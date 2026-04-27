@@ -1,12 +1,12 @@
 from pydantic_ai import Agent
-from rag.backend.constants import VECTOR_DB_PATH, MODEL_LARGE
+from rag.backend.constants import VECTOR_DB_PATH, MODEL_MEDIUM
 import lancedb
 from rag.backend.data_models import RagResponse
 
 vector_db = lancedb.connect(uri=VECTOR_DB_PATH)
 
 rag_agent = Agent(
-    model=MODEL_LARGE,
+    model=MODEL_MEDIUM,
     output_type=RagResponse,
     system_prompt="""
 You are an animal expert who loves helping young pet owners (ages 10-15).
