@@ -22,7 +22,7 @@ def layout():
         st.markdown(data.get("answer"))
         
         st.markdown("## Source")
-        st.markdown(data.get("filepath"))
+        st.markdown(data.get("filename"))
 
 
     
