@@ -5,7 +5,7 @@ from rag.backend.data_models import Prompt, RagResponse
 app = FastAPI()
 
 
-@api.post("/rag/query")
+@app.post("/rag/query")
 async def query_documentation(query: Prompt) -> RagResponse:
     result = await bot_answer(query.prompt)
 
