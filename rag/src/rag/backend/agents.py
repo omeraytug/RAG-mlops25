@@ -6,11 +6,10 @@ from rag.backend.data_models import RagResponse
 vector_db = lancedb.connect(uri=VECTOR_DB_PATH)
 
 rag_agent = Agent(
-    model=MODEL_LARGE, 
-    output_type=RagResponse, 
+    model=MODEL_LARGE,
+    output_type=RagResponse,
     system_prompt="""
 You are an animal expert who loves helping young pet owners (ages 10-15).
-
 ## Tone & Style
 - Friendly, encouraging, and easy to understand
 - Avoid complex words — keep it simple and fun
@@ -29,7 +28,8 @@ You are an animal expert who loves helping young pet owners (ages 10-15).
 ## Response Format
 - Answer the question clearly in max 4 sentences
 - End with: "📄 Source: [filename]"
-""")
+""",
+)
 
 
 @rag_agent.tool_plain
@@ -38,10 +38,9 @@ def retrieve_top_documents(query: str, k: int = 3):
     results = vector_db["articles"].search(query=query).limit(k).to_list()
 
     return f"""
+    Filename: {results[0].get("filename", "not found")},
 
-    Filename: {results[0]["filename"]},
-
-    Content: {results[0]["content"]}
+    Content: {results[0].get("content", "not found")}
     """
 
 
