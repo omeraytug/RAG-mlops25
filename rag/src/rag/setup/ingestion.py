@@ -19,9 +19,14 @@ def ingest_docs_to_vector_db(table):
         table.delete(f"document_name = '{document_name}'")
 
         table.add([{
-            "document_name": document_name
-            "filepath": str(file)
+            "document_name": document_name,
+            "filepath": str(file),
             "content": content
         }])
 
         print(table.to_pandas()["document_name"])
+
+
+if __name__ == "__main__":
+    vector_db = setup_vector_db(VECTOR_DB_PATH)
+    ingest_docs_to_vector_db(vector_db["articles"])
