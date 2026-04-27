@@ -38,7 +38,7 @@ def retrieve_top_documents(query: str, k: int = 3):
     results = vector_db["articles"].search(query=query).limit(k).to_list()
 
     return f"""
-    Filename: {results[0].get("filename", "not found")},
+    Filename: {results[0].get("document_name", "not found")},
 
     Content: {results[0].get("content", "not found")}
     """
