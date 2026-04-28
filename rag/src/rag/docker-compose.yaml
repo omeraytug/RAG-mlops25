@@ -17,8 +17,8 @@ services:
     build:
       context: .
       dockerfile: dockerfiles/frontend.dockerfile
-    env_file:
-      - .env
     image: frontend:v1
     ports:
       - "8501:8501"
+    depends_on:
+      - backend
