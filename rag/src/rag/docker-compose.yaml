@@ -10,3 +10,15 @@ services:
     image: backend:v1
     ports:
       - "8000:8000"
+  
+
+  frontend:
+    container_name: frontend
+    build:
+      context: .
+      dockerfile: dockerfiles/frontend.dockerfile
+    env_file:
+      - .env
+    image: frontend:v1
+    ports:
+      - "8501:8501"
